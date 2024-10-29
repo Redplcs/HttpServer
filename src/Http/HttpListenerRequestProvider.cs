@@ -1,14 +1,13 @@
-﻿using System.Net;
+﻿using Microsoft.Extensions.Logging;
+using System.Net;
 
 namespace Redplcs.GtfoOfMyServer.Http;
 
-public class HttpListenerRequestProvider(HttpListener listener) : IHttpRequestProvider
+public class HttpListenerRequestProvider(HttpListener listener, ILogger<HttpListenerRequestProvider> logger) : IHttpRequestProvider
 {
 	public async Task<IHttpRequest> GetRequestAsync(CancellationToken cancellationToken = default)
 	{
 		var context = await listener.GetContextAsync().WaitAsync(cancellationToken);
-
-		cancellationToken.ThrowIfCancellationRequested();
 
 		var connection = new HttpListenerConnection(context);
 		var request = new HttpListenerRequest(connection);
