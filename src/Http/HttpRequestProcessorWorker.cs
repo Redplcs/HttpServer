@@ -16,6 +16,8 @@ public class HttpRequestProcessorWorker(IHttpRequestProvider requests, IHttpResp
 
 	private async Task SendMessage(IHttpRequest request, CancellationToken cancellationToken)
 	{
-		await sender.SendAsync(request.RemoteEndPoint, "Get the fuck out!", cancellationToken);
+		var connection = request.Connection;
+
+		await sender.SendAsync(connection, "Get the fuck out!", cancellationToken);
 	}
 }

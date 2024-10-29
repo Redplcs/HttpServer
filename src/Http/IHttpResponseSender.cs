@@ -1,8 +1,6 @@
-﻿using System.Net;
-
-namespace Redplcs.GtfoOfMyServer.Http;
+﻿namespace Redplcs.GtfoOfMyServer.Http;
 
 public interface IHttpResponseSender
 {
-	Task SendAsync(IPEndPoint remoteEndPoint, string body, CancellationToken cancellationToken);
+	Task SendAsync(IHttpConnection connection, string body, CancellationToken cancellationToken);
 }
