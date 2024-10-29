@@ -13,6 +13,7 @@ host.Services.AddSingleton(_ =>
 	return listener;
 });
 host.Services.AddSingleton<IHttpRequestProvider, HttpListenerRequestProvider>();
+host.Services.AddSingleton<IHttpResponseSender, HttpListenerResponseSender>();
 host.Services.AddHostedService<HttpRequestProcessorWorker>();
 
 await host.Build().RunAsync();
