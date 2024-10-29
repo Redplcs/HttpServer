@@ -6,7 +6,7 @@ public class HttpListenerRequestProvider(HttpListener listener) : IHttpRequestPr
 {
 	public async Task<IHttpRequest> GetRequestAsync(CancellationToken cancellationToken = default)
 	{
-		var context = await listener.GetContextAsync();
+		var context = await listener.GetContextAsync().WaitAsync(cancellationToken);
 
 		cancellationToken.ThrowIfCancellationRequested();
 
