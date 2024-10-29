@@ -10,6 +10,8 @@ public class HttpListenerRequestProvider(HttpListener listener) : IHttpRequestPr
 
 		cancellationToken.ThrowIfCancellationRequested();
 
-		return new HttpRequest(context.Request);
+		var connection = new HttpListenerConnection(context);
+		var request = new HttpListenerRequest(connection);
+		return request;
 	}
 }
